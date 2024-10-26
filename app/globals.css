@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-color: black;
+  --background-color: white;
+  --header-border-color: #00000020;
+
+  --font-sm: 0.875rem;
+  --title-weight: 600;
+}
+
+.dark {
+  --foreground-color: white;
+  --background-color: black;
+  --header-border-color: #ffffff20;
+}
