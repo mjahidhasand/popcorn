@@ -1,11 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { EyeTrackingOnIcon, PersonArrowRightIcon, SearchIcon } from "./icons";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
+  const router = useRouter();
   // State to manage dark mode
   const [darkMode, setDarkMode] = useState<boolean>(false); // Ensure darkMode is boolean
+  const [search, setSearch] = useState("");
 
   // Effect to set initial theme based on local storage
   useEffect(() => {
@@ -24,6 +27,11 @@ export const Header = () => {
 
     // Save preference as a string in local storage
     localStorage.setItem("dark-mode", String(newMode)); // Convert boolean to string
+  };
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    router.push(`/search?search=${encodeURIComponent(search)}`);
   };
 
   return (
@@ -48,13 +56,15 @@ export const Header = () => {
 
       <nav className="flex items-center gap-4">
         <form
-          action="/search"
           className="border-foreground/20 flex items-center rounded-md border p-1 pl-2"
+          onSubmit={onSubmit}
         >
           <input
             name="search"
             type="text"
-            className="border-none outline-none bg-transparent text-foreground"
+            className="border-none bg-transparent text-foreground outline-none"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button className="text-foreground/60">
             <SearchIcon />

@@ -52,7 +52,7 @@ export const useSearchMovies = (keyword: string) => {
   const [movies, setMovies] = useState<any[]>([]); // Cumulative movie data
 
   const { data, isLoading } = useQuery<any[], Error>({
-    queryKey: [`seach-movie-${page}-${keyword}`],
+    queryKey: [`seach-movie-${page}-${keyword.replaceAll("-", "_")}`],
     queryFn: () => searchMovies(keyword, page),
   });
 

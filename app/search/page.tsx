@@ -28,7 +28,7 @@ const Content = () => {
   }, [entry]);
 
   // Early return if there's no search keyword
-  if (!searchKeyword) {
+  if (data.length === 0) {
     return (
       <main className="px-4 py-4 md:px-12">
         <h4 className="mb-2 font-title">Search</h4>
