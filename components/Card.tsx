@@ -30,7 +30,6 @@ const rgbDataURL = (r: number, g: number, b: number) =>
 
 export const Card = (p: CardProps) => {
   const releaseYear = p.release_date ? p.release_date.slice(0, 4) : "";
-  console.log(p.poster_path);
   return (
     <article className="relative w-full">
       <figure className="!relative h-60 w-40">
